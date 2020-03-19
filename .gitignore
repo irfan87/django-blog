@@ -3,7 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=django
 
 # mac
-.DS_STORE
+.DS_Store
 
 ### Django ###
 *.log
