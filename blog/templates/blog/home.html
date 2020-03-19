@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}
+	{% if title %}
+		<title>Blog Django - {{ title }}</title>
+	{% else %}
+		<title>Blog Django</title>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% for post in posts %}
+		<article class="media content-section">
+			<img src="{{ post.author.profile.image.url }}" alt="post.author" class="rounded-circle article-img">
+			<div class="media-body">
+				<div class="article-metadata">
+					<a href="{% url 'user-posts' post.author.username %}" class="mr-2">{{post.author|title}}</a>
+					<small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+				</div>
+				<h2><a href="{% url 'post-detail' post.pk %}" class="article-title">{{post.title}}</a></h2>
+				<p class="article-content">
+					{{post.content}}
+				</p>
+			</div>
+		</article>
+	{% endfor %}
+	{% include "blog/includes/paginate.html" %}
+{% endblock %}
